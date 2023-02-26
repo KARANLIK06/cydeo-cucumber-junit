@@ -7,7 +7,7 @@ Feature: Google search functionality
     Then user should see title is Google
 
 # day 16 Task-1
-  @wip
+
   Scenario: Search functionality result title verification
     Given user is on Google search page
     When user types apple and clicks enter
