@@ -27,7 +27,7 @@ Feature: Wikipedia search functionality and verifications
       | Cristiano Ronaldo | Cristiano Ronaldo | Cristiano Ronaldo  |
       | Bob Marley        | Bob Marley        | Bob Marley         |
       | Chuck Norris      | Chuck Norris      | Chuck Norris       |
-      | Antony Hopkins    | Antony Hopkins    | Antony Hopkins     |
+
 
     @scientists
     Examples:
