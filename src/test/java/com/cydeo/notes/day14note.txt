@@ -1,0 +1,220 @@
+CLASS NOTES: DAY 14 - DRYRUN- TAGS- HTML REPORT-2
+Today's schedule:
+    - Introduction to different frameworks
+    - Introduction to BDD framework
+    - Learn Cucumber
+
+- We will be focusing more on "Tell me about your framework?" question.
+
+- Selenium GRID
+- Jenkins
+
+- SQL
+- API
+
+
+-----------------------------------------------------------------------------------------------
+
+MVP: MINIMUM VIABLE PRODUCT
+
+DDT: DATA DRIVEN TESTING FRAMEWORK
+    - Data Driven Testing:  Executing the same tests against different test data.
+    - Data Driven Testing Framework : is the framework we are able to read data from an external file and use it in our source code.
+    - We can get the data from:
+        - MS Excel
+        - MS Access
+        - Database
+        - Feature files
+        - Configuration.properties
+
+- Keyword Driven Testing:
+    - Creating testing structure based on some keywords that are executable.
+    - This requires a lot of time to invest in to even make it work, but also it is hard to maintain, and hard to scale since the object repositories, and keyword repositories have to me maintained and expanded as the framework gets bigger.
+
+
+- TDD : TEST DRIVEN DEVELOPMENT: (BUG FREE DEVELOPMENT)
+- There is a repeating development cycle with TDD.
+
+#1- Write tests before writing any source code.
+#2- Run the tests, and tests will fail.
+#3- Write minimum amount of code to make the tests pass.
+#4- Run the tests, and tests will PASS.
+#5- REFACTOR AND REPEAT
+
+
+- In TDD developers are writing @Tests in the preferred PROGRAMMING LANGUAGE.
+- That's why it is not readable or understandable for the non-technical team members of the team
+- That's why we will be using BDD.
+
+- @Test (s) are written in programming language
+- Scenarios are written in English in Gherkin language.
+
+- BDD has 2 layers.
+
+#1- Business layer: FEATURE FILES
+    - Feature files will be storing the different features, scenarios, and re-usable steps in Gherkin language.
+    - Business side is mostly for collaboration with non-technical people
+
+#2- Implementation layer: STEP DEFINITIONS
+    - Technical people implement the 'STEP DEFINITIONS' to convert steps (from feature files) into concrete actions.
+
+-----------------------------------------------------------------------------------------------
+
+- Why are we not using TestNG and using JUNIT?
+    #1- Because the community mostly using Cucumber with JUNIT.
+    - more questions
+    - more answers
+    - more demand
+    - more opportunities
+    #2- We don't need all of the annotations coming from TestNG
+
+- Is Cucumber a testing tool?
+    - No, it is not. Cucumber is just a BDD implementation tool.
+    - Therefore, it does not come with any assertions or any programming logic.
+    - That's why we have to use the dependencies with "cucumber-java", "cucumber-junit" to be able to develop some programming logic and also be able to generate some test approach with assertions.
+
+
+TestNG Assertions: Assert.assertTrue(boolean, "failure message");
+JUNIT Assertions: Assert.assertTrue("failure message", boolean);
+
+-----------------------------------------------------------------------------------------------
+
+2-3-4 Day's schedule:
+
+#1- dryRun
+#2- tags
+#3- html reports
+#4- Background
+#5- Hooks
+#6- Parameterization
+#7- dataTables
+#8- scenario outlines
+#9- parallel testing
+#10- report generation
+
+-----------------------------------------------------------------------------------------------
+
+- Dryrun: turns on and off the running of step_definitions.
+- If I don't want to actually run my code, and just want to get my snippets for implementing, I will turn dryRun on by giving "true" value
+
+dryRun = true --> do not run my step_definitions, but only check if any step is missing snippet
+dryRun = false --> this will turn off dryRun, and our code will run as expected.
+
+--> How do we generate step_definition "snippets" for unimplemented steps:
+
+#1- We can run our Runner class to auto-generate our snippets
+#2- We can write new step in feature file and hover on them to select option provided by IntelliJ to generate my snippets.
+
+
+-----------------------------------------------------------------------------------------------
+
+Given, When, Then, And, But
+    --> all of these keywords we use in the feature files are only for communication (making sense) purpose
+    --> they dont change the functionality of the step_definitions
+
+- Our code will be executed in the order we create in the feature files.
+- Each scenario will be executed by top to bottom, and each step will be calling it step_definition method from its own package &class.
+
+GIVEN: is used for pre-conditions
+
+Ex:
+     Given user is already logged in and ready to do something
+     Given user is already on the home page
+     Given user is already on the login page
+     Given user is already on the search page
+
+
+     Given I am on the search page
+
+     Given driver is logged in
+
+     Given officer is logged in
+
+
+WHEN: is used for when some actions happen
+
+    When user enters librarian user name
+
+    When user clicks to some link
+
+    When user searches for something
+
+
+AND: is used for when you many repeating lines of any keyword
+BUT: is similar for "AND" but for when we are comparing or some negative scenario happening
+THEN: is used for when the verification is happening
+
+    - Then user should see title is something
+
+    - Then user should see the dashboard
+
+    - Then user should see the image is displayed
+
+
+
+-----------------------------------------------------------------------------------------------
+
+TAGS: Tags are used to group different scenarios together
+
+    - We can use tags to include or exclude some scenarios.
+
+    - If we put the @Tag on top of the .feature file, it will effect the whole feature file
+    - If we put it on top of a Scenario, it will only effect that scenario
+    - You can have as many tags as you want for a feature file or a scenario
+
+- How do we include or exclude different tags together?
+- How do we use different tags together?
+
+- or :
+    - "or" keyword can be used for checking condition
+    - when we use or, we are being LESS specific, less selective
+    - if either one of the tags are matching, the scenario or feature will be executed
+    - or is like || in java.
+    - if either one of the sides are matching, it will execute the scenario or feature file.
+
+- and
+    - "and" keyword can be used for checking conditions as well
+    - when we use "and" keyword, we are being MORE specific
+    - "and" is similar to "&&" in java
+    - the tags on the both side has to be matching for a scenario or feature to be executed
+
+- and not
+    - "and not" keyword can be used for excluding conditions
+
+    @Regression and not @student
+
+-----------------------------------------------------------------------------------------------
+
+-How to create a feature file and implement scenarios STEP BY STEP
+
+1- Create a feature file "something.feature" under our "features" directory
+2- Use "Feature:" keyword to provide information about the feature that will be tested, and also (optionally) you can pass here the Agile story as well.
+3- Use "Scenario:" keyword to generate a "Scenario:" and describe what this scenario will do
+4- Add our "Steps" using assigned keywords such as "Given", "When", "Then", "And", "But"
+5- Generate our snippets to implement "Step_definitions"
+    - We have multiple ways to get our snippets
+    #1- run the RUnner class and copy the auto-generated snippets from console
+    #2- hover over the unimplemented step, and IntelliJ will auto-generate the snippet for us
+    #3- we can run the scenario or feature from the feature file itself to generate snippet as well
+
+6- Copy paste the snippet into the step_definition ".java" class we have
+7- Implement our "JAVA+SELENIUM+JUNIT" logic to turn the step into an actual action
+
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+- WHERE DO YOU RUN YOUR TESTS FROM?
+- WHAT IS THE TRIGGERING POINT OF YOUR FRAMEWORK?
+    - CukesRunner
+    - TestRunner
+    - Runner
+    - Runner class is the class where we control/trigger our whole framework.
+
+#1- Runner class should know which type of report we should be generating
+#2- Runner class should know where we store our step_definitions
+#3- Runner class should know where we store our feature files
+#4- Runner class should know if we want to run our tests dryRun = true or false
+#5- Runner class should know which features or scenarios we want to run through tags
+
+- How do we generate different types of reports?
+- We provide "plugin" keyword in our Runner class under @CucumberOptions
