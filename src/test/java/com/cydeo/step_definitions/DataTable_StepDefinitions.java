@@ -36,8 +36,11 @@ public class DataTable_StepDefinitions {
         for (WebElement each : actualOptionsAsWebElement) {
             actualOptionsAsString.add(each.getText());
         }
-        Assert.assertEquals(expectedMonths,actualOptionsAsString);
         System.out.println("actualOptionsAsString = " + actualOptionsAsString);
+
+        Assert.assertEquals(expectedMonths,actualOptionsAsString);
+        //Assert will check the size of the lists first. If it is matching it will check content 1 by 1.
+
 
     }
 
